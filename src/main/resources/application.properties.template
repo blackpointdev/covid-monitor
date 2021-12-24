@@ -1,0 +1,10 @@
+quarkus.datasource.db-kind=postgresql
+quarkus.datasource.username=postgres
+quarkus.datasource.password=
+
+quarkus.datasource.jdbc.url=jdbc:postgresql://localhost:5432/database_name
+quarkus.datasource.jdbc.max-size=16
+
+quarkus.log.level=INFO
+quarkus.log.category."com.blackpoint".level=DEBUG
+quarkus.log.file.enable=true
