@@ -4,11 +4,7 @@ import com.blackpoint.covidmonitor.domain.boundary.mapper.CovidDataDTOMapper;
 import com.blackpoint.covidmonitor.domain.control.CovidDataService;
 import com.blackpoint.covidmonitor.domain.entity.CovidDataEntity;
 import com.blackpoint.covidmonitor.domain.entity.dto.CovidDataCreationDTO;
-import org.eclipse.microprofile.graphql.Description;
-import org.eclipse.microprofile.graphql.GraphQLApi;
-import org.eclipse.microprofile.graphql.Mutation;
-import org.eclipse.microprofile.graphql.Name;
-import org.eclipse.microprofile.graphql.Query;
+import org.eclipse.microprofile.graphql.*;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
@@ -31,20 +27,18 @@ public class CovidDataResource {
 
     @Query
     @Description("Get all COVID-19 data")
-    public List<CovidDataEntity> getAllData(@Name("limit") Integer limit) {
+    public List<CovidDataEntity> getAllData(@Name("limit") @NonNull Integer limit) {
         return covidDataService.getNewestData(limit);
     }
 
     @Query
     @Description("Get COVID-19 data by ID")
-    @Transactional
     public CovidDataEntity getDataById(@Name("entityId") Long id) {
         return covidDataService.getDataById(id);
     }
 
     @Query
     @Description("Get COVID-19 data by date")
-    @Transactional
     public List<CovidDataEntity> getDataByDate(@Name("date") String date) {
         try {
             return covidDataService.getDataByDate(date);
@@ -56,7 +50,6 @@ public class CovidDataResource {
 
     @Mutation
     @Description("Create Covid Data Entry")
-    @Transactional
     public CovidDataEntity createEntry(CovidDataCreationDTO covidDataCreationDTO) {
         try {
             return covidDataService.createEntry(covidDataDTOMapper.mapToEntity(covidDataCreationDTO));

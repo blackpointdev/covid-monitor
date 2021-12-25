@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "covid_data")
@@ -19,7 +20,7 @@ public class CovidDataJPA {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Date x_date;
+    private LocalDate x_date;
     private String country;
 
     @Column(name = "newly_infected")

@@ -30,7 +30,7 @@ public class CovidDataMapper {
 
     public CovidDataJPA mapToJPA(CovidDataEntity covidDataEntity) {
         return CovidDataJPA.builder()
-                .x_date(new Date(covidDataEntity.getDate().getTime()))
+                .x_date(covidDataEntity.getDate())
                 .country(covidDataEntity.getCountry())
                 .newlyInfected(covidDataEntity.getNewlyInfected())
                 .allInfected(covidDataEntity.getAllInfected())
